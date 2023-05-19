@@ -1,27 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: "Open Sans", sans-serif;
+  background: #1d2b3a;
+  color: white;
+  min-height: 100vh;
+}
+
+@layer components {
+  .inputBox {
+    @apply relative w-full;
+  }
+  .inputBox input {
+    @apply w-full rounded-[5px] border border-solid border-[rgba(255,255,255,0.25)] bg-[#1d2b3a] p-2.5 text-[1em] text-white outline-none transition-[0.5s] duration-500;
+  }
+  .inputBox span {
+    @apply pointer-events-none absolute left-0 p-2.5 text-[1em] uppercase text-[rgba(255,255,255,0.25)] transition-[0.5s] duration-500;
+  }
+  .inputBox input:valid ~ span,
+  .inputBox input:focus ~ span {
+    @apply translate-x-2.5 translate-y-[-7px] border-l border-r border-solid border-x-[#00dfc4] bg-[#1d2b3a] px-2.5 py-0 text-[0.65em] tracking-[0.2em] text-[#00dfc4];
+  }
+  .inputBox input:valid,
+  .inputBox input:focus {
+    @apply border border-solid border-[#00dfc4];
+  }
+  .icon-btn {
+    @apply rounded-[5px] border border-teal-400 duration-300 hover:bg-teal-600 hover:text-white;
+  }
+  .delete-btn {
+    @apply rounded-[5px] bg-red-500 text-white duration-300 hover:bg-red-700 hover:shadow-sm;
+  }
 }
